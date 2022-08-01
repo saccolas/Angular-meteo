@@ -94,6 +94,7 @@
               "browserTarget": "ng-meteo-app:build:production"
             },
             "development": {
+              "proxyConfig": "proxy.conf.json",
               "browserTarget": "ng-meteo-app:build:development"
             }
           },
@@ -107,5 +108,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": false
   }
 }

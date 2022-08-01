@@ -1,0 +1,8 @@
+{
+    "/meteoApi": {
+        "target": "https://api.open-meteo.com/v1",
+        "secure": false,
+        "changeOrigin": true,
+        "pathRewrite" : {"^/meteoApi" : ""}
+    }
+}

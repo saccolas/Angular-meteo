@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { Meteo } from '../interfaces/meteo';
 import { MeteoService } from './meteo.service';
 
@@ -10,22 +11,22 @@ import { MeteoService } from './meteo.service';
   styles: [
   ]
 })
-export class DisplayMeteoComponent  {
- 
+export class DisplayMeteoComponent implements OnInit, OnDestroy {
 
-  //meteo: Meteo;
+  private subscription?: Subscription;
 
-  constructor(private route: ActivatedRoute, 
-    private router: Router,
-    private meteoService: MeteoService
+  public meteo?: Meteo;
 
-    ) { }
+  constructor(private meteoService: MeteoService) { }
 
- /*ngOnInit(): void  {
-     this.meteoService.subscribe((res: Meteo) => {
+ ngOnInit(): void  {
+    this.subscription = this.meteoService.getMeteo().subscribe((res: Meteo) => {
       this.meteo = res
-     })
-     
- }*/
+    });    
+ }
+
+ ngOnDestroy(): void {
+  this.subscription?.unsubscribe();
+ }
 
 }
